@@ -244,4 +244,8 @@ api.add_resource(HandleAudioResource, "/resource/<string:audioFile_type>/<string
 
 @main.route("/")
 def __():
-	return "<a href='https://documenter.getpostman.com/view/13988113/Tz5qadAs'>Postman Doc</>"
+	return """
+		<h1>Audio filed</h1>
+		<p>Flask API that `"simulates"` the behavior of an audio file server, using a MongoDB database.</p>
+		<a href='https://documenter.getpostman.com/view/13988113/Tz5qadAs'>Postman Doc</>
+	"""
