@@ -240,3 +240,8 @@ class HandleAudioResource(Resource):
 
 api.add_resource(NewAudioResource, "/resource")
 api.add_resource(HandleAudioResource, "/resource/<string:audioFile_type>/<string:audioFile_id>", "/resource/<string:audioFile_type>")
+
+
+@main.route("/")
+def __():
+	return "<a href='https://documenter.getpostman.com/view/13988113/Tz5qadAs'>Postman Doc</>"
