@@ -2,3 +2,4 @@ maprule
 __pycache__	
 venv
 .vscode
+.pytest_*

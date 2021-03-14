@@ -1,3 +1,7 @@
+""" The rules here validates/controls how data recieved...
+from client should structured.
+"""
+
 from maprule import fields
 
 # RULES FOR "CREATE" ENDPOINT
@@ -29,3 +33,23 @@ newAudioBookRule = fields.Dictionary(dict(
 	))
 ))
 
+
+# RULES FOR "PATCH" ENDPOINT
+patchSongRule = fields.Dictionary(dict(
+	name=fields.String(min_length=1, max_length=100, nullable=True),
+	duration=fields.Integer(minimum=0, nullable=True),
+))
+
+patchPodcastRule = fields.Dictionary(dict(
+	name=fields.String(min_length=1, max_length=100, nullable=True),
+	duration=fields.Integer(minimum=0, nullable=True),
+	host=fields.String(min_length=1, max_length=100, nullable=True),
+	participants=fields.Array(fields.String(min_length=1, max_length=100), validate=lambda x: len(x) <= 10, nullable=True)
+))
+
+patchAudioBookRule = fields.Dictionary(dict(
+	name=fields.String(min_length=1, max_length=100, nullable=True),
+	duration=fields.Integer(minimum=0, nullable=True),
+	author=fields.String(min_length=0, max_length=100, nullable=True),
+	narrator=fields.String(min_length=0, max_length=100, nullable=True)
+))

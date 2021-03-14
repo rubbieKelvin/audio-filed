@@ -1,15 +1,31 @@
+# ...
+import os
 from flask import Flask
 
+# ...
 from .extensions import mongo
 from .main.routes import main
 
-def create_app():
+# ... for environmental varibles
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
+
+# ...
+def create_app() -> Flask:
+
+	""" create a flask application instance.
+	"""
+
 	app = Flask(__name__)
 
-	app.config["SECRET_KEY"] = "%E*&DI%6s6di5di5idi5u6su65dI75diTDdtTYDKdi56"
-	app.config["MONGO_URI"] = "mongodb+srv://me:i88uXJaR6RKTWhoX@audio-filed-cluster.ixpvo.mongodb.net/audio_filed_db?retryWrites=true&w=majority"
+	# set application configuration
+	app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+	app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
+	# initialize flask extensions
 	mongo.init_app(app)
 
+	# register blueprints
 	app.register_blueprint(main)
+
 	return app
